@@ -6,7 +6,7 @@ import { getTokenFromUrl } from './Spotify';
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDataLayerValue } from './DataLayer';
 
-// 2:16:06
+// 3:20:00
 
 // communicating with Spotify API
 const spotify = new SpotifyWebApi();
@@ -38,6 +38,12 @@ function App() {
           type: "SET_USER",
           user: user,
         })
+       })
+       spotify.getUserPlaylists().then((playlists) =>{
+          dispatch({
+            type: "SET_PLAYLISTs",
+            playlists: playlists,
+          })
        })
      }
   }, []);

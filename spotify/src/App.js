@@ -6,14 +6,15 @@ import { getTokenFromUrl } from './Spotify';
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDataLayerValue } from './DataLayer';
 
-// 3:20:00
 
 // communicating with Spotify API
 const spotify = new SpotifyWebApi();
 
 function App() {
   // const [token, setToken] = useState(null);
-  const [{ user, token },  dispatch] = useDataLayerValue();
+  // const [{ user, token },  dispatch] = useDataLayerValue();
+
+  const [{token },  dispatch] = useDataLayerValue();
 
   // run code based on a given condition
   useEffect( () =>{
@@ -43,6 +44,13 @@ function App() {
           dispatch({
             type: "SET_PLAYLISTs",
             playlists: playlists,
+          })
+       })
+
+       spotify.getPlaylist("37i9dQZF1EpkcdMdpdg0Ag").then(response =>{
+          dispatch({
+            type: "SET_ON_REPEAT",
+            on_Repeat: response,
           })
        })
      }

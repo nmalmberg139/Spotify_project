@@ -2,6 +2,7 @@ export const initialState = {
     user: null,
     playlists: [],
     playing: false,
+    on_Repeat: null,
     item: null,
     token: null,
 }
@@ -26,6 +27,11 @@ const reducer = (state, action) =>{
                 ...state,
                 playlists: action.playlists,
             };
+        case 'SET_ON_REPEAT':
+            return{
+                ...state,
+               on_Repeat: action.on_Repeat,
+            }    
 
         default:
         return state;
